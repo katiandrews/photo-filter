@@ -9,6 +9,7 @@ const buttonReset = document.querySelector('.btn-reset');
 const buttonSave = document.querySelector('.btn-save');
 const fileInput = document.querySelector('input[type="file"]');
 const canvas = document.querySelector('canvas');
+const fullscreenButton = document.querySelector('.fullscreen');
 
 // change output value and add filter
 filters.addEventListener('input', (event) => {
@@ -109,3 +110,18 @@ function savePicture() {
 }
 
 buttonSave.addEventListener('click', savePicture);
+
+// request fullscreen mode if document is not in fullscreen mode
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
+fullscreenButton.addEventListener('click', function(event) {
+  toggleFullScreen();
+})
