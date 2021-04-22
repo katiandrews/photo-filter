@@ -82,6 +82,7 @@ fileInput.addEventListener('change', function() {
     originImg.src = reader.result;
   }
   reader.readAsDataURL(file);
+  fileInput.value = null;
 })
 
 // save picture 
