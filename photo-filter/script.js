@@ -4,6 +4,7 @@ const base = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tas
 const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', 
                 '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
 let i = 0;
+const buttons = document.querySelector('.btn-container');
 const buttonNext = document.querySelector('.btn-next');
 const buttonReset = document.querySelector('.btn-reset');
 const buttonSave = document.querySelector('.btn-save');
@@ -121,5 +122,14 @@ function toggleFullScreen() {
 
 fullscreenButton.addEventListener('click', function(event) {
   toggleFullScreen();
+})
+
+buttons.addEventListener('click', function(event) {
+  if (event.target.matches('.btn')) {
+    for (let i = 0; i < buttons.children.length; i += 1) {
+      buttons.children[i].classList.remove('btn-active');
+    }
+    event.target.classList.toggle('btn-active');
+  }
 })
 
