@@ -94,13 +94,9 @@ function savePicture() {
     canvas.width = image.width;
     canvas.height = image.height;
     const ctx = canvas.getContext('2d');
-    let k;
-    if (image.width > image.height) {  // calculate the coefficient for blur
-      k = image.width / originImg.width;
-    } else {
-      k = image.height / originImg.height;
-    }
-    ctx.filter = window.getComputedStyle(originImg).getPropertyValue('filter') + `blur(${filters.children[0].children[0].value*k}px)`;
+    let k = (image.height / originImg.height);
+    ctx.filter = window.getComputedStyle(originImg).getPropertyValue('filter')
+                .replace(/blur\(\d+px\)/, `blur(${(filters.children[0].children[0].value)*k}px)`);
     ctx.drawImage(image, 0, 0);
     let link = document.createElement('a');
     link.href = canvas.toDataURL();
@@ -126,3 +122,4 @@ function toggleFullScreen() {
 fullscreenButton.addEventListener('click', function(event) {
   toggleFullScreen();
 })
+
